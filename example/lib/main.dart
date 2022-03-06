@@ -54,7 +54,13 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: InkWell(
+            onTap: (){
+                FlutterHmsScan.loadScanKit().then((value) => debugPrint(value));
+            },
+              child: Text(
+            'Running on: $_platformVersion\n',
+          )),
         ),
       ),
     );
