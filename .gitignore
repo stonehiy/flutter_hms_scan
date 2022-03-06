@@ -69,3 +69,4 @@ fastlane/readme.md
 app/debug
 app/release
 
+.dart_tool
