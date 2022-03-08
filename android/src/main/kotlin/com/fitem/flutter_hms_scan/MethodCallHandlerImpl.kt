@@ -9,7 +9,7 @@ import io.flutter.plugin.common.PluginRegistry
 
 /**
  * 插件方法监听
- * Created by LeiGuangwu on 2022/3/2.
+ * Created by Fitem on 2022/3/2.
  */
 class MethodCallHandlerImpl(var scanLauncher: ScanLauncher) : MethodChannel.MethodCallHandler,
     MethodCallHandlerListener, PluginRegistry.ActivityResultListener,

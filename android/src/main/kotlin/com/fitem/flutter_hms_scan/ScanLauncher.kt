@@ -14,7 +14,7 @@ import io.flutter.plugin.common.MethodChannel
 
 /**
  * hms扫码启动器
- * Created by LeiGuangwu on 2022/3/2.
+ * Created by Fitem on 2022/3/2.
  */
 class ScanLauncher(var applicationContext: Context, var activity: Activity?) {
 
