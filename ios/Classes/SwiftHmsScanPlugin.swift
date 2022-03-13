@@ -1,10 +1,10 @@
 import Flutter
 import UIKit
 
-public class SwiftFlutterHmsScanPlugin: NSObject, FlutterPlugin {
+public class SwiftHmsScanPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "flutter_hms_scan", binaryMessenger: registrar.messenger())
-    let instance = SwiftFlutterHmsScanPlugin()
+    let channel = FlutterMethodChannel(name: "hms_scan", binaryMessenger: registrar.messenger())
+    let instance = SwiftHmsScanPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 

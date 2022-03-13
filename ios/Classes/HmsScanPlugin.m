@@ -1,4 +1,4 @@
-#import "FlutterHmsScanPlugin.h"
+#import "HmsScanPlugin.h"
 #if __has_include(<flutter_hms_scan/flutter_hms_scan-Swift.h>)
 #import <flutter_hms_scan/flutter_hms_scan-Swift.h>
 #else
@@ -8,8 +8,8 @@
 #import "flutter_hms_scan-Swift.h"
 #endif
 
-@implementation FlutterHmsScanPlugin
+@implementation HmsScanPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-  [SwiftFlutterHmsScanPlugin registerWithRegistrar:registrar];
+  [SwiftHmsScanPlugin registerWithRegistrar:registrar];
 }
 @end

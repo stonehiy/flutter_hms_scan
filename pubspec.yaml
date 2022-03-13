@@ -31,7 +31,7 @@ flutter:
         package: com.fitem.flutter_hms_scan
         pluginClass: HmsScanPlugin
       ios:
-        pluginClass: FlutterHmsScanPlugin
+        pluginClass: HmsScanPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:

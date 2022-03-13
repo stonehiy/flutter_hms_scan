@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hms_scan/flutter_hms_scan.dart';
 import 'package:flutter_hms_scan/model/scan_bean.dart';
 
@@ -16,10 +17,31 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   ScanBean? _bean;
   bool _scanSuc = false;
+  String _platformVersion = 'Unknown';
 
   @override
   void initState() {
     super.initState();
+    initPlatformState();
+  }
+
+  Future<void> initPlatformState() async {
+    String platformVersion;
+    try {
+      platformVersion =
+          await FlutterHmsScan.platformVersion ?? 'Unknown platform version';
+    } on PlatformException {
+      platformVersion = 'Failed to get platform version.';
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      _platformVersion = platformVersion;
+    });
   }
 
   @override
@@ -46,6 +68,8 @@ class _MyAppState extends State<MyApp> {
                 },
                 child: const Text('LoadScanKit', style: TextStyle(fontSize: 20),),
               ),
+              const SizedBox(height: 50),
+              Text('Running on: $_platformVersion\n'),
               const SizedBox(height: 50),
               if (_scanSuc) Text("${_bean?.codeResult}"),
               const SizedBox(height: 10),

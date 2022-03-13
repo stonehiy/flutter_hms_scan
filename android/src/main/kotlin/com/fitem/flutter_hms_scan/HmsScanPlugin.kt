@@ -18,6 +18,9 @@ class HmsScanPlugin : FlutterPlugin, ActivityAware {
     private lateinit var mScanLauncher: ScanLauncher
     private lateinit var mHandler: MethodCallHandlerImpl
 
+    /**
+     * 老版本Flutter兼容
+     */
     fun registerWith(registrar: Registrar) {
         mScanLauncher = ScanLauncher(registrar.context(), registrar.activity())
         mHandler = MethodCallHandlerImpl(mScanLauncher)
