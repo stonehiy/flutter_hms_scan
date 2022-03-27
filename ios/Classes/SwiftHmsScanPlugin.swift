@@ -1,8 +1,7 @@
 import Flutter
 import UIKit
-import ScanKitFrameWork
 
-public class SwiftHmsScanPlugin: NSObject, FlutterPlugin, DefaultScanDelegate {
+public class SwiftHmsScanPlugin: NSObject, FlutterPlugin, BarcodeScannerViewControllerDelegate {
     
     private var result: FlutterResult?
     private var hostViewController: UIViewController?
@@ -30,15 +29,15 @@ public class SwiftHmsScanPlugin: NSObject, FlutterPlugin, DefaultScanDelegate {
                     hostViewController = topViewController(base:rootVC)
                 }
         
-        let hmsDefaultScanViewController = HmsDefaultScanViewController()
+        let scannerViewController = BarcodeScannerViewController()
 
-        let navigationController = UINavigationController(rootViewController: hmsDefaultScanViewController)
+        let navigationController = UINavigationController(rootViewController: scannerViewController)
         
         if #available(iOS 13.0, *) {
               navigationController.modalPresentationStyle = .fullScreen
           }
           
-        hmsDefaultScanViewController.defaultScanDelegate = self
+        scannerViewController.delegate = self
         hostViewController?.present(navigationController, animated: false)
     }
     
@@ -55,14 +54,12 @@ public class SwiftHmsScanPlugin: NSObject, FlutterPlugin, DefaultScanDelegate {
         return base
     }
     
-    private func defaultScanDelegateForDicResult(resultDic: NSDictionary){
-        let string = resultDic["text"]
-        result?(string)
+    func didScanBarcodeWithResult(_ controller: BarcodeScannerViewController?, scanResult: ScanResult) {
+        result?(["codeResult":scanResult.rawContent, "scanStatus" : String(true), "resultType": String(scanResult.format.rawValue)])
     }
     
-    private func defaultScanImagePickerDelegateForImage(image : UIImage){
-        let resultDic = HmsBitMap.bitMap(for: image, with: HmsScanOptions())
-        let string = resultDic?["text"]
-        result?(string)
+    func didFailWithErrorCode(_ controller: BarcodeScannerViewController?, errorCode: String) {
+        result?(["scanStatus" : String(false)])
     }
+    
 }

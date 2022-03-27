@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'dart:ffi';
+
 ScanBean scanBeanFromJson(String str) => ScanBean.fromJson(json.decode(str));
 
 String scanBeanToJson(ScanBean data) => json.encode(data.toJson());
@@ -18,7 +20,9 @@ class ScanBean {
   String? codeResult;
 
   factory ScanBean.fromJson(Map<String, dynamic> json) => ScanBean(
-        scanStatus: json["scanStatus"] ?? false,
+        scanStatus: json["scanStatus"] is String
+            ? json["scanStatus"] == "true"
+            : json["scanStatus"] ?? false,
         codeFormat: json["codeFormat"],
         resultType: json["resultType"],
         codeResult: json["codeResult"],
