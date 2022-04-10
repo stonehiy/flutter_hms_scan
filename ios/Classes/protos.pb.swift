@@ -2,7 +2,7 @@
 //  protos.pb.swift
 //  flutter_hms_scan
 //
-//  Created by 雷光武 on 2022/3/27.
+//  Created by Fitem on 2022/3/27.
 //
 
 import Foundation
